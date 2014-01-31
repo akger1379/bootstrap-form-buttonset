@@ -12,6 +12,13 @@
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="js/bootstrap-form-buttonset.js"></script>
+
+	<style>
+		.well {
+			background-color: #fff;
+			min-height: 80px;
+		}
+	</style>
 </head>
 <body>
 <div class="container">
@@ -19,21 +26,33 @@
         <small>live on bootstrap 3</small>
     </h1>
 
-    <div class="well buttonset-radio">
-        <input type="radio" name="r1" id="r1" value="1"><label for="r1">Yes</label>
-        <input type="radio" name="r1" id="r2" value="1"><label for="r2">No</label>
+	<h2>Examples</h2>
+	<h3>Radios (default)</h3>
+    <div class="well buttonset-rd">
+        <input type="radio" name="rd" id="rd1" value="1"><label for="rd1">Yes</label>
+        <input type="radio" name="rd" id="rd2" value="1"><label for="rd2">No</label>
+        <input type="radio" name="rd" id="rd3" value="1"><label for="rd3">I don't wanna choose</label>
     </div>
-    <button type="button" id="RadioTransformAttach" class="btn btn-default">Attach (default)</button>
-    <button type="button" id="RadioTransformDetach" class="btn btn-default">Detach</button>
+    <button type="button" id="BtnAttach-rd" onclick="$('.buttonset-rd').bsFormButtonset().attach();" class="btn btn-default">Attach</button>
+    <button type="button" id="BtnDetach-rd" onclick="$('.buttonset-rd').bsFormButtonset().detach();" class="btn btn-default">Detach</button>
 
-    <script>
-        $('#RadioTransformAttach').click(function() {
-            $('.buttonset-radio').bsFormButtonset().attach();
-        });
-        $('#RadioTransformDetach').click(function() {
-            $('.buttonset-radio').bsFormButtonset().detach();
-        });
-    </script>
+	<h3>Radios (optional)</h3>
+	<div class="well buttonset-ro">
+		<input type="radio" name="ro" id="ro1" value="1"><label for="ro1">asc</label>
+		<input type="radio" name="ro" id="ro2" value="1"><label for="ro2">desc</label>
+	</div>
+	<button type="button" id="BtnAttach-ro" onclick="$('.buttonset-ro').bsFormButtonset({optional: true}).attach();" class="btn btn-default">Attach</button>
+	<button type="button" id="BtnDetach-ro" onclick="$('.buttonset-ro').bsFormButtonset().detach();" class="btn btn-default">Detach</button>
+
+	<h3>Checkboxes</h3>
+	<div class="well buttonset-c">
+		<input type="checkbox" name="c1" id="c1" value="1"><label for="c1">Apples</label>
+		<input type="checkbox" name="c2" id="c2" value="1"><label for="c2">Peaches</label>
+		<input type="checkbox" name="c3" id="c3" value="1"><label for="c3">Cherries</label>
+		<input type="checkbox" name="c4" id="c4" value="1"><label for="c4">Oranges</label>
+	</div>
+	<button type="button" id="BtnAttach-c" onclick="$('.buttonset-c').bsFormButtonset({buttonClasses: 'btn-warning btn-xs'}).attach();" class="btn btn-default">Attach</button>
+	<button type="button" id="BtnDetach-c" onclick="$('.buttonset-c').bsFormButtonset().detach();" class="btn btn-default">Detach</button>
 </div>
 </body>
 </html>
