@@ -6,4 +6,4 @@ the button states to form values.
 
 ### Usage
 
-Please refer to `demo-bs3.html` to see the plugin in action.
+Please refer to `demo-bs3.html` to see the plugin in action. A demo is available [here](http://akger1379.github.io/bootstrap-form-buttonset/demo-bs3.html).
