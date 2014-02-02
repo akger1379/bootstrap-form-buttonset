@@ -1,5 +1,9 @@
 /**
+ * bootstrap-form-buttonset
+ * @see https://github.com/akger1379/bootstrap-form-buttonset
  * @see https://gist.github.com/akger1379/8625327
+ * Copyright (c) 2014, André Kroll
+ * Released under the MIT license
  */
 ;
 (function ($, window, document, undefined) {
@@ -7,8 +11,9 @@
 
 	var PLUGIN_NAME = 'bsFormButtonset';
 	var PLUGIN_DEFAULTS = {
-		buttonClasses: '',
-		optional: false
+		buttonClasses: 'btn-default',
+		isVertical: false,
+		isOptional: false
 	};
 
 	function PLUGIN(element, options) {
@@ -46,7 +51,12 @@
 			}
 
 			var that = this;
-			var $btnGroup = $('<div class="btn-group"></div>');
+			var $btnGroup = $('<div></div>');
+			if (this._options.isVertical === false) {
+				$btnGroup.addClass('btn-group');
+			} else {
+				$btnGroup.addClass('btn-group-vertical');
+			}
 			this._$element.children('input[type=radio], input[type=checkbox]').each(function () {
 				var $input = $(this);
 				var id = $input.attr('id');
@@ -66,7 +76,7 @@
 					var inputType = that._inputs[inputId].$input.attr('type');
 					// act only when not disabled
 					if (!that._inputs[inputId].$input.prop('disabled')) {
-						var canBeUnchecked = (inputType == 'checkbox' || that._options.optional);
+						var canBeUnchecked = (inputType == 'checkbox' || that._options.isOptional);
 						if ($clickedBtn.hasClass('active')) {
 							if (canBeUnchecked) {
 								that._inputs[inputId].$input.prop('checked', false);
