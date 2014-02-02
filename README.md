@@ -1,8 +1,9 @@
 # bootstrap-form-buttonset
 
-This small plugin will skin checkboxes and radios with bootstraps button groups. The origin inputs will be synced with
+This small plugin will skin checkboxes and radios with Bootstraps button groups. The origin inputs will be synced with
 the current button states. The inputs are always ready to submit. No additional changes or scripts are needed to convert
 the button states to form values.
+This plugin is compatible to **Bootstrap 2** an **Bootstrap 3**.
 
 ### Usage
 
