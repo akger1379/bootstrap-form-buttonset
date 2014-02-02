@@ -157,12 +157,14 @@
 
 	function isBootstrap3() {
 		if (_isBs3 === null) {
-			var test = $('<div class="bg-primary"></div>');
+			var test = $('<div class="bg-primary" style="display: none"></div>');
+			test.appendTo('body');
 			if (test.css('background-color') == 'rgb(66, 139, 202)') {
 				_isBs3 = true;
 			} else {
 				_isBs3 = false;
 			}
+			test.remove();
 		}
 		return _isBs3;
 	}
