@@ -21,6 +21,7 @@
 		this._options = this._initOptions(options);
 		this._isAttached = false;
 		this._inputs = {};
+
 	};
 
 	PLUGIN.prototype = {
@@ -52,10 +53,13 @@
 
 			var that = this;
 			var $btnGroup = $('<div></div>');
-			if (this._options.isVertical === false) {
-				$btnGroup.addClass('btn-group');
-			} else {
+			if (this._options.isVertical) {
+				if (!isBootstrap3()) {
+					$btnGroup.addClass('btn-group');
+				}
 				$btnGroup.addClass('btn-group-vertical');
+			} else {
+				$btnGroup.addClass('btn-group');
 			}
 			this._$element.children('input[type=radio], input[type=checkbox]').each(function () {
 				var $input = $(this);
@@ -122,7 +126,11 @@
 			if (!this._isAttached) {
 				return;
 			}
-			this._$element.children('div.btn-group').remove();
+			if (this._options.isVertical) {
+				this._$element.children('div.btn-group-vertical').remove();
+			} else {
+				this._$element.children('div.btn-group').remove();
+			}
 			this._$element.children('.bootstrap-form-buttonset-org').children().unwrap();
 			this._isAttached = false;
 		},
@@ -142,8 +150,22 @@
 				}
 			});
 		}
-
 	};
+
+	// <PRIVATE_STATIC_HELPERS> ........................................................................................
+	var _isBs3 = null;
+
+	function isBootstrap3() {
+		if (_isBs3 === null) {
+			var test = $('<div class="bg-primary"></div>');
+			if (test.css('background-color') == 'rgb(66, 139, 202)') {
+				_isBs3 = true;
+			} else {
+				_isBs3 = false;
+			}
+		}
+		return _isBs3;
+	}
 
 	// <JPB_CORE> ......................................................................................................
 	{
