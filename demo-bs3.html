@@ -41,7 +41,7 @@
 		<input type="radio" name="ro" id="ro1" value="1"><label for="ro1">asc</label>
 		<input type="radio" name="ro" id="ro2" value="1"><label for="ro2">desc</label>
 	</div>
-	<button type="button" id="BtnAttach-ro" onclick="$('.buttonset-ro').bsFormButtonset({optional: true}).attach();" class="btn btn-default">Attach</button>
+	<button type="button" id="BtnAttach-ro" onclick="$('.buttonset-ro').bsFormButtonset({isOptional: true}).attach();" class="btn btn-default">Attach</button>
 	<button type="button" id="BtnDetach-ro" onclick="$('.buttonset-ro').bsFormButtonset().detach();" class="btn btn-default">Detach</button>
 
 	<h3>Checkboxes</h3>
@@ -51,8 +51,18 @@
 		<input type="checkbox" name="c3" id="c3" value="1"><label for="c3">Cherries</label>
 		<input type="checkbox" name="c4" id="c4" value="1"><label for="c4">Oranges</label>
 	</div>
-	<button type="button" id="BtnAttach-c" onclick="$('.buttonset-c').bsFormButtonset({buttonClasses: 'btn-warning btn-xs'}).attach();" class="btn btn-default">Attach</button>
+	<button type="button" id="BtnAttach-c" onclick="$('.buttonset-c').bsFormButtonset({buttonClasses: 'btn-success btn-xs'}).attach();" class="btn btn-default">Attach</button>
 	<button type="button" id="BtnDetach-c" onclick="$('.buttonset-c').bsFormButtonset().detach();" class="btn btn-default">Detach</button>
+
+	<h3>Checkboxes (vertical)</h3>
+	<div class="well buttonset-cv">
+		<input type="checkbox" name="cv1" id="cv1" value="1"><label for="cv1">Apples</label>
+		<input type="checkbox" name="cv2" id="cv2" value="1"><label for="cv2">Peaches</label>
+		<input type="checkbox" name="cv3" id="cv3" value="1"><label for="cv3">Cherries</label>
+		<input type="checkbox" name="cv4" id="cv4" value="1"><label for="cv4">Oranges</label>
+	</div>
+	<button type="button" id="BtnAttach-cv" onclick="$('.buttonset-cv').bsFormButtonset({isVertical: true}).attach();" class="btn btn-default">Attach</button>
+	<button type="button" id="BtnDetach-cv" onclick="$('.buttonset-cv').bsFormButtonset().detach();" class="btn btn-default">Detach</button>
 </div>
 </body>
 </html>
