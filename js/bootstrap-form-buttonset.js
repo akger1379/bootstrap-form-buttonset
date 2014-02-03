@@ -13,7 +13,6 @@
 	var PLUGIN_NAME = 'bsFormButtonset';
 	var PLUGIN_DEFAULTS = {
 		buttonClasses: 'btn-default',
-		autoAttach: true,
 		isVertical: false,
 		isOptional: false
 	};
@@ -21,11 +20,7 @@
 	function PLUGIN(element, options) {
 		this._$element = $(element);
 		this._options = this._validateOptions(options, PLUGIN_DEFAULTS);
-		this._isAttached = false;
 		this._inputs = {};
-		if (this._options.autoAttach === true) {
-			this.attach();
-		}
 	};
 
 	PLUGIN.prototype = {
@@ -33,6 +28,7 @@
 		// <PUBLIC_PLUGIN_LOGIC> .......................................................................................
 
 		attach: function (options) {
+			this.detach();
 			this.setOptions(options);
 			this._attachButtonGroupToInputs();
 		},
@@ -56,10 +52,6 @@
 		},
 
 		_attachButtonGroupToInputs: function () {
-			if (this._isAttached) {
-				return;
-			}
-
 			var that = this;
 			var $btnGroup = $('<div></div>');
 			if (this._options.isVertical) {
@@ -126,22 +118,15 @@
 
 			// sync button states with current input states
 			this._syncButtonStates();
-
-			// set plugin state
-			this._isAttached = true;
 		},
 
 		_detachButtonGroupFromInputs: function () {
-			if (!this._isAttached) {
-				return;
-			}
 			if (this._options.isVertical) {
 				this._$element.children('div.btn-group-vertical').remove();
 			} else {
 				this._$element.children('div.btn-group').remove();
 			}
 			this._$element.children('.bootstrap-form-buttonset-org').children().unwrap();
-			this._isAttached = false;
 		},
 
 		_syncButtonStates: function () {
