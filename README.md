@@ -8,11 +8,13 @@ Works with **Bootstrap 2** and **Bootstrap 3**!
 ### Demo
 
 [Bootstrap2](http://akger1379.github.io/bootstrap-form-buttonset/demo-bs2.html)
+
 [Bootstrap3](http://akger1379.github.io/bootstrap-form-buttonset/demo-bs3.html)
 
 ### Usage
 
 First define your inputs and wrap them inside a container.
+
 **Important** - all inputs need to have their own unique id!
 
 ```html
