@@ -1,6 +1,6 @@
 /**
  * bootstrap-form-buttonset
- * Lightweight plugin to skin/transform radios and/or checkboxes into bootstrap button groups.
+ * Lightweight plugin to skin/transform radios and/or checkboxes into Bootstrap button groups.
  * @see https://github.com/akger1379/bootstrap-form-buttonset
  * @see https://gist.github.com/akger1379/8625327
  * Copyright (c) 2014, André Kroll
