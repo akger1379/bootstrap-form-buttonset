@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>bootstrap-form-buttonset demo BS2</title>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-form-buttonset.js"></script>
+
+	<style>
+		.well {
+			background-color: #fff;
+			min-height: 80px;
+		}
+	</style>
+</head>
+<body>
+<div class="container form-inline">
+    <h1>bootstrap-form-buttonset
+        <small>live on bootstrap 2</small>
+    </h1>
+
+	<h2>Examples</h2>
+	<h3>Radios (default)</h3>
+    <div class="well buttonset-rd">
+        <input type="radio" name="rd" id="rd1" value="1"><label for="rd1">Yes</label>
+        <input type="radio" name="rd" id="rd2" value="1"><label for="rd2">No</label>
+        <input type="radio" name="rd" id="rd3" value="1"><label for="rd3">I don't wanna choose</label>
+    </div>
+    <button type="button" id="BtnAttach-rd" onclick="$('.buttonset-rd').bsFormButtonset('attach');" class="btn btn-default">Attach</button>
+    <button type="button" id="BtnDetach-rd" onclick="$('.buttonset-rd').bsFormButtonset('detach');" class="btn btn-default">Detach</button>
+
+	<h3>Radios (optional)</h3>
+	<div class="well buttonset-ro">
+		<input type="radio" name="ro" id="ro1" value="1"><label for="ro1">asc</label>
+		<input type="radio" name="ro" id="ro2" value="1"><label for="ro2">desc</label>
+	</div>
+	<button type="button" id="BtnAttach-ro" onclick="$('.buttonset-ro').bsFormButtonset('attach', {isOptional: true});" class="btn btn-default">Attach</button>
+	<button type="button" id="BtnDetach-ro" onclick="$('.buttonset-ro').bsFormButtonset('detach');" class="btn btn-default">Detach</button>
+
+	<h3>Checkboxes</h3>
+	<div class="well buttonset-c">
+		<input type="checkbox" name="c1" id="c1" value="1"><label for="c1">Apples</label>
+		<input type="checkbox" name="c2" id="c2" value="1"><label for="c2">Peaches</label>
+		<input type="checkbox" name="c3" id="c3" value="1"><label for="c3">Cherries</label>
+		<input type="checkbox" name="c4" id="c4" value="1"><label for="c4">Oranges</label>
+	</div>
+	<button type="button" id="BtnAttach-c" onclick="$('.buttonset-c').bsFormButtonset('attach', {buttonClasses: 'btn-success btn-mini'});" class="btn btn-default">Attach</button>
+	<button type="button" id="BtnDetach-c" onclick="$('.buttonset-c').bsFormButtonset('detach');" class="btn btn-default">Detach</button>
+
+	<h3>Checkboxes (vertical)</h3>
+	<div class="well buttonset-cv">
+		<input type="checkbox" name="cv1" id="cv1" value="1"><label for="cv1">Apples</label>
+		<input type="checkbox" name="cv2" id="cv2" value="1"><label for="cv2">Peaches</label>
+		<input type="checkbox" name="cv3" id="cv3" value="1"><label for="cv3">Cherries</label>
+		<input type="checkbox" name="cv4" id="cv4" value="1"><label for="cv4">Oranges</label>
+	</div>
+	<button type="button" id="BtnAttach-cv" onclick="$('.buttonset-cv').bsFormButtonset('attach', {isVertical: true});" class="btn btn-default">Attach</button>
+	<button type="button" id="BtnDetach-cv" onclick="$('.buttonset-cv').bsFormButtonset('detach');" class="btn btn-default">Detach</button>
+</div>
+</body>
+</html>
