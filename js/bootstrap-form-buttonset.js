@@ -1,5 +1,6 @@
 /**
  * bootstrap-form-buttonset
+ * Lightweight plugin to skin/transform radios and/or checkboxes into Bootstrap button groups.
  * @see https://github.com/akger1379/bootstrap-form-buttonset
  * @see https://gist.github.com/akger1379/8625327
  * Copyright (c) 2014, André Kroll
@@ -18,17 +19,17 @@
 
 	function PLUGIN(element, options) {
 		this._$element = $(element);
-		this._options = this._initOptions(options);
-		this._isAttached = false;
+		this._options = this._validateOptions(options, PLUGIN_DEFAULTS);
 		this._inputs = {};
-
 	};
 
 	PLUGIN.prototype = {
 
 		// <PUBLIC_PLUGIN_LOGIC> .......................................................................................
 
-		attach: function () {
+		attach: function (options) {
+			this.detach();
+			this.setOptions(options);
 			this._attachButtonGroupToInputs();
 		},
 
@@ -40,17 +41,17 @@
 			this._syncButtonStates();
 		},
 
+		setOptions: function(options) {
+			this._options = this._validateOptions(options, this._options);
+		},
+
 		// <PRIVATE_PLUGIN_LOGIC> ......................................................................................
 
-		_initOptions: function (options) {
-			return $.extend({}, PLUGIN_DEFAULTS, options);
+		_validateOptions: function (options, defaults) {
+			return $.extend({}, defaults, options);
 		},
 
 		_attachButtonGroupToInputs: function () {
-			if (this._isAttached) {
-				return;
-			}
-
 			var that = this;
 			var $btnGroup = $('<div></div>');
 			if (this._options.isVertical) {
@@ -117,22 +118,15 @@
 
 			// sync button states with current input states
 			this._syncButtonStates();
-
-			// set plugin state
-			this._isAttached = true;
 		},
 
 		_detachButtonGroupFromInputs: function () {
-			if (!this._isAttached) {
-				return;
-			}
 			if (this._options.isVertical) {
 				this._$element.children('div.btn-group-vertical').remove();
 			} else {
 				this._$element.children('div.btn-group').remove();
 			}
 			this._$element.children('.bootstrap-form-buttonset-org').children().unwrap();
-			this._isAttached = false;
 		},
 
 		_syncButtonStates: function () {
@@ -157,12 +151,14 @@
 
 	function isBootstrap3() {
 		if (_isBs3 === null) {
-			var test = $('<div class="bg-primary"></div>');
+			var test = $('<div class="bg-primary" style="display: none"></div>');
+			test.appendTo('body'); // IE fix to read out css property
 			if (test.css('background-color') == 'rgb(66, 139, 202)') {
 				_isBs3 = true;
 			} else {
 				_isBs3 = false;
 			}
+			test.remove();
 		}
 		return _isBs3;
 	}
@@ -172,14 +168,27 @@
 		// Register global access through window object for altering plugin defaults
 		window[PLUGIN_NAME + '_defaults'] = PLUGIN_DEFAULTS;
 		// Register the plugin at jQuerys function namespace
-		$.fn[PLUGIN_NAME] = function (options) {
+		$.fn[PLUGIN_NAME] = function () {
+			var orgArgs = arguments;
+			var constructOptions = {};
+			var isMethodCall = false;
+			var methodArgs = [];
+			if (orgArgs[0] !== undefined && typeof orgArgs[0] === 'object') {
+				constructOptions = orgArgs[0];
+			} else if (typeof orgArgs[0] === 'string') {
+				isMethodCall = true;
+				methodArgs = Array.prototype.slice.call(orgArgs, 1)
+			}
 			this.each(function () {
 				if (undefined === $.data(this, 'plugin_' + PLUGIN_NAME)) {
 					// First call by this element: create new instance of the plugin
-					$.data(this, 'plugin_' + PLUGIN_NAME, new PLUGIN(this, options));
+					$.data(this, 'plugin_' + PLUGIN_NAME, new PLUGIN(this, constructOptions));
+				}
+				if (isMethodCall === true) {
+					$.data(this, 'plugin_' + PLUGIN_NAME)[orgArgs[0]].apply($.data(this, 'plugin_' + PLUGIN_NAME), methodArgs);
 				}
 			});
-			return (this.length > 0) ? $.data(this.get(0), "plugin_" + PLUGIN_NAME) : this;
+			return this;
 		};
 	}
 })(jQuery, window, document);
