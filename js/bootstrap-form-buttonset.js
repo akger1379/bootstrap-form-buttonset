@@ -100,6 +100,8 @@
 							that._inputs[inputId].$input.prop('checked', true);
 							that._inputs[inputId].$btn.addClass('active');
 						}
+						// fire change event
+						that._inputs[inputId].$input.trigger('change');
 					}
 					e.target.blur();
 					e.preventDefault();
