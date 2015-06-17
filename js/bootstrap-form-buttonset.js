@@ -139,8 +139,8 @@
 				if (that._inputs[id].$input.prop('disabled')) {
 					$btn.addClass('disabled');
 				} else {
-                    $btn.removeClass('disabled');
-                }
+					$btn.removeClass('disabled');
+				}
 				if (that._inputs[id].$input.prop('checked')) {
 					$btn.addClass('active');
 				} else {
