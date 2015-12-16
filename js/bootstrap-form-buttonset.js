@@ -100,6 +100,8 @@
 							that._inputs[inputId].$input.prop('checked', true);
 							that._inputs[inputId].$btn.addClass('active');
 						}
+						// fire change event
+						that._inputs[inputId].$input.trigger('change');
 					}
 					e.target.blur();
 					e.preventDefault();
@@ -136,6 +138,8 @@
 				var id = $btn.attr('data-input-id');
 				if (that._inputs[id].$input.prop('disabled')) {
 					$btn.addClass('disabled');
+				} else {
+					$btn.removeClass('disabled');
 				}
 				if (that._inputs[id].$input.prop('checked')) {
 					$btn.addClass('active');
