@@ -133,7 +133,8 @@
 
         _syncButtonStates: function () {
             var that = this;
-            this._$element.children('.btn-group').children('button').each(function () {
+            var cssGroupClass = (this._options.isVertical) ? '.btn-group-vertical' : '.btn-group';
+            this._$element.children(cssGroupClass).children('button').each(function () {
                 var $btn = $(this);
                 var id = $btn.attr('data-input-id');
                 if (that._inputs[id].$input.prop('disabled')) {
